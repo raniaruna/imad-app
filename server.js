@@ -9,6 +9,7 @@ var config = {
     port:'5432',
     password:process.env.DB_PASSWORD
 };
+var pool = new Pool(config);
 var app = express();
 app.use(morgan('combined'));
 var articles = {
@@ -64,7 +65,7 @@ app.get('/counter', function (req, res) {
 });
 // get data from database 
 app.get('/articles/tb_test', function (req, res) {
-	Pool.query("SELECT * FROM ARTICLE" ,function(err,result){
+	pool.query("SELECT * FROM ARTICLE" ,function(err,result){
 	    if(err){
 	        res.status(500).send(err.toString());
 	    } else {
