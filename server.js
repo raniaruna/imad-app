@@ -42,7 +42,7 @@ app.get('/counter', function (req, res) {
 });
 // get data from database 
 app.get('/tb_test', function (req, res) {
-	pool.query("SELECT * FROM TAGS" ,function(err,result){
+	pool.query("SELECT * FROM TAG" ,function(err,result){
 	    if(err){
 	        res.status(500).send(err.toString());
 	    } else {
