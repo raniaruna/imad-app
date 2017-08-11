@@ -69,7 +69,7 @@ app.get('/articles/tb_test', function (req, res) {
 	    if(err){
 	        res.status(500).send(err.toString());
 	    } else {
-            res.status(200).send(JSON.stringify(result));	        
+            res.status(200).send(JSON.stringify(result.rows));	        
 	    }
 	});
   
