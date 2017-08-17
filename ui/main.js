@@ -52,10 +52,14 @@ create_submit.onclick = function(){
 	//capture response and store in variable 
 	req.onreadystatechange =function(){
 		if(req.readyState== XMLHttpRequest.DONE){
+		    var textRes = document.getElementById("txt-result");
+					textRes.innerHTML = 'Display Result : ';
 			if(req.status===200){
 				
-					var textRes = document.getElementById("txt-result");
-					textRes.innerHTML = req.responseText;
+					
+					textRes.innerHTML += req.responseText;
+			} else {
+			    textRes.innerHTML += 'Error : '+req.status;
 			}
 		}
 
