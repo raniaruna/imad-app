@@ -46,7 +46,20 @@ function hash(input,salt){
     var hashed = crypto.pbkdf2Sync(input,salt,10000,512,'sha512');
     return hashed.toString('hex');
 }
-    
+ 
+ app.get('/create-user',function(req,res){
+     var salt = crypto.getRandomBytes(128).toString('hex');
+     var userName = req.params.username;
+     var password = req.params.password;
+     var dbString = hash(password,salt);
+    pool.query('INSERT INTO "USERS"(USERNAME,PASSWORD) VALUES($1,$2)',[userName,dbString] ,function(err,result){
+	    if(err){
+	        res.status(500).send(err.toString());
+	    } else {
+            res.status(200).send('user name created successfuly '+userName);	        
+	    }
+	});
+});   
 
 app.get('/hash/:input',function(req,res){
     var hashedStr = hash(req.params.input,'this-is-some-random-string');
