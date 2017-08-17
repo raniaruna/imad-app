@@ -47,7 +47,7 @@ button.onclick=function(){
 
 function loadLoginForm(){
     var loginHTML =`<input type='text' id='username'/><br/>
-                    <input type='password' id='password'/><br/><input type='text' id='user_name'/><br/><input type='email' id='user_email'/><br/>
+                    <input type='password' id='password'/><br/><input type='text' id='user_name'/><br/><input type='text' id='user_email'/><br/>
                     <input type='submit' id='register_btn' value='Register'/><br/>`;
                     var login =document.getElementById("login_area");
                     login.innerHTML =loginHTML;
