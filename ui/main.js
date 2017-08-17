@@ -63,7 +63,9 @@ create_submit.onclick = function(){
 	var username = document.getElementById("username").value;
 	var password = document.getElementById("password").value;
 	
-
+   console.log(username);
+   console.log(password);
+   console.log('creating');
 	//make the request
 	req.open('POST','http://raniaruna2005.imad.hasura-app.io/create-name',true);
 	req.send(JSON.stringify({username: username, password: password}));
