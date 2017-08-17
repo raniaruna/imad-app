@@ -53,6 +53,7 @@ function hash(input,salt){
      var username = req.body.username;
      var password = req.body.password;
      var dbString = hash(password,salt);
+     console.log('in server creating user');
     pool.query('INSERT INTO "USER" (USERNAME,PASSWORD) VALUES($1,$2)',[username,dbString] ,function(err,result){
 	    if(err){
 	        res.status(500).send(err.toString());
