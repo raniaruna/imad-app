@@ -43,6 +43,38 @@ button.onclick=function(){
 	req.send(null);
 };
 
+var create_submit = document.getElementById("create-submit-btn");
+
+create_submit.onclick = function(){
+//create req obj
+	var req = new XMLHttpRequest();
+
+	//capture response and store in variable 
+	req.onreadystatechange =function(){
+		if(req.readyState== XMLHttpRequest.DONE){
+			if(req.status===200){
+					var names = req.responseText;
+					 names=JSON.parse(names);
+					
+					var list='';
+					for(var i=0; i<names.length; i++){
+						list += '<li>'+names[i]+ '</li>';
+					}
+					
+					var ul = document.getElementById("name-list");
+					ul.innerHTML = list;
+			}
+		}
+
+	};
+	var nameInput = document.getElementById("name");
+	var name =nameInput.value;
+
+	//make the request
+	req.open('POST','http://raniaruna2005.imad.hasura-app.io/create-name',true);
+	req.send(null);
+};
+
 var submit = document.getElementById("submit-btn");
 submit.onclick = function(){
 //create req obj
