@@ -67,8 +67,8 @@ app.get('/hash/:input',function(req,res){
      var salt = crypto.randomBytes(128).toString('hex');
      var dbString = hash(password,salt);
           console.log('in server creating user' +username+ ", "+password);
-    
-    pool.query('INSERT INTO "user" ("username","name","password") VALUES($1,$1,$2)',[username,dbString] ,function(err,result){
+    var email =username+'@user.com';
+    pool.query('INSERT INTO "user" ("username","name","email","password") VALUES($1,$1,$2,$3)',[username,email,dbString] ,function(err,result){
 	    if(err){
 	        console.log(err.toString());
 	        res.status(500).send(err.toString());
