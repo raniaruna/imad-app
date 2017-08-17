@@ -50,14 +50,14 @@ function hash(input,salt){
  
  app.post('/create-user',function(req,res){
      var salt = crypto.randomBytes(128).toString('hex');
-     var userName = req.body.username;
+     var username = req.body.username;
      var password = req.body.password;
      var dbString = hash(password,salt);
-    pool.query('INSERT INTO "USER"(USERNAME,PASSWORD) VALUES($1,$2)',[userName,dbString] ,function(err,result){
+    pool.query('INSERT INTO "USER"(USERNAME,PASSWORD) VALUES($1,$2)',[username,dbString] ,function(err,result){
 	    if(err){
 	        res.status(500).send(err.toString());
 	    } else {
-            res.status(200).send('user name created successfuly '+userName);	        
+            res.status(200).send('user name created successfuly '+username);	        
 	    }
 	});
 });   
