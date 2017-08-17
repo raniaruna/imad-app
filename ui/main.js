@@ -53,26 +53,20 @@ create_submit.onclick = function(){
 	req.onreadystatechange =function(){
 		if(req.readyState== XMLHttpRequest.DONE){
 			if(req.status===200){
-					var names = req.responseText;
-					 names=JSON.parse(names);
-					
-					var list='';
-					for(var i=0; i<names.length; i++){
-						list += '<li>'+names[i]+ '</li>';
-					}
-					
-					var ul = document.getElementById("name-list");
-					ul.innerHTML = list;
+				
+					var textRes = document.getElementById("txt-result");
+					textRes.innerHTML = req.responseText;
 			}
 		}
 
 	};
-	var nameInput = document.getElementById("name");
-	var name =nameInput.value;
+	var username = document.getElementById("username").value;
+	var password = document.getElementById("password").value;
+	
 
 	//make the request
 	req.open('POST','http://raniaruna2005.imad.hasura-app.io/create-name',true);
-	req.send(null);
+	req.send(JSON.stringify({username: username, password: password}));
 };
 
 var submit = document.getElementById("submit-btn");
