@@ -102,6 +102,7 @@ function loadLogin(){
 			if(req.status===200){
 			   loadLogedInUser();
 			} else {
+			    alert('user not loged in');
 			    loadLoginForm();
 			}
 		}
