@@ -44,7 +44,7 @@ button.onclick=function(){
 };
 
 
- var register = document.getElementById('register_btn');
+ var register = document.getElementById('register_btn1');
     register.onclick = function () {
         // Create a request object
         var request = new XMLHttpRequest();
