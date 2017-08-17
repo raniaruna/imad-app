@@ -16,6 +16,10 @@ var pool = new Pool(config);
 var app = express();
 app.use(morgan('combined'));
 app.use(bodyParser.json());
+app.use(session({
+    secret: 'someRandomSecretValue',
+    cookie: { maxAge:1000 *60 * 60 * 24 * 30}
+}));
 
 function createTemplate(data){
 	
@@ -42,33 +46,39 @@ app.get('/', function (req, res) {
     console.log('here starting the page');
   res.sendFile(path.join(__dirname, 'ui', 'index.html'));
 });
+function hash(input,salt){
+    var hashed = crypto.pbkdf2Sync(input,salt,10000,512,'sha512');
+    return ["pbkdf2","10000",salt,hashed.toString('hex')].join('$');
+}
 
+app.get('/hash/:input',function(req,res){
+    var hashedStr = hash(req.params.input,'this-is-some-random-string');
+    res.send(hashedStr);
+});
+ 
+
+ app.post('/create-user',function(req,res){
+      console.log('in server creating user 1111');
+      var username = req.body.username;
+     var password = req.body.password;
+     var salt = crypto.randomBytes(128).toString('hex');
+     var dbString = hash(password,salt);
+          console.log('in server creating user');
+     
+    pool.query('INSERT INTO "user" (username,password) VALUES($1,$2)',[username,dbString] ,function(err,result){
+	    if(err){
+	        res.status(500).send(err.toString());
+	    } else {
+            res.send('user name created successfuly '+username);	        
+	    }
+	});
+});
 var counter =0;
 app.get('/counter', function (req, res) {
 	counter++;
   res.send(counter.toString());
 });
 
-function hash(input,salt){
-    var hashed = crypto.pbkdf2Sync(input,salt,10000,512,'sha512');
-    return ["pbkdf2","10000",salt,hashed.toString('hex')].join('$');
-}
- 
- app.post('/create-user',function(req,res){
-      console.log('in server creating user 1111');
-     var salt = crypto.randomBytes(128).toString('hex');
-     var username = req.body.username;
-     var password = req.body.password;
-     var dbString = hash(password,salt);
-     console.log('in server creating user');
-    pool.query('INSERT INTO "USER" (USERNAME,PASSWORD) VALUES($1,$2)',[username,dbString] ,function(err,result){
-	    if(err){
-	        res.status(500).send(err.toString());
-	    } else {
-            res.status(200).send('user name created successfuly '+username);	        
-	    }
-	});
-}); 
 app.post('/login',function(req,res){
      var salt = crypto.randomBytes(128).toString('hex');
      var username = req.body.username;
@@ -83,10 +93,6 @@ app.post('/login',function(req,res){
 	});
 }); 
 
-app.get('/hash/:input',function(req,res){
-    var hashedStr = hash(req.params.input,'this-is-some-random-string');
-    res.send(hashedStr);
-});
 // get data from database 
 app.get('/tb_test', function (req, res) {
 	pool.query("SELECT * FROM TAG" ,function(err,result){
