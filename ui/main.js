@@ -63,7 +63,7 @@ register.onclick = function(){
 	request.onreadystatechange =function(){
 		if(request.readyState== XMLHttpRequest.DONE){
 		    
-			if(req.status===200){
+			if(request.status===200){
 			    alert('User created successfully');
 					textRes.innerHTML += request.responseText;
 					register.value='Registered'
