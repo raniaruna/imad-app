@@ -45,7 +45,7 @@ app.get('/counter', function (req, res) {
 
 function hash(input,salt){
     var hashed = crypto.pbkdf2Sync(input,salt,10000,512,'sha512');
-    return ['pbkdf2',"10000",salt,hashed.toString('hex')].join('$');
+    return ["pbkdf2","10000",salt,hashed.toString('hex')].join('$');
 }
  
  app.post('/create-user',function(req,res){
@@ -53,7 +53,7 @@ function hash(input,salt){
      var userName = req.body.username;
      var password = req.body.password;
      var dbString = hash(password,salt);
-    pool.query('INSERT INTO "USERS"(USERNAME,PASSWORD) VALUES($1,$2)',[userName,dbString] ,function(err,result){
+    pool.query('INSERT INTO "USER"(USERNAME,PASSWORD) VALUES($1,$2)',[userName,dbString] ,function(err,result){
 	    if(err){
 	        res.status(500).send(err.toString());
 	    } else {
