@@ -75,29 +75,28 @@ button.onclick=function(){
     
     };
 
-
-
 var register = document.getElementById("register_btn");
 
 register.onclick = function(){
 //create req obj
  alert('create clicked');
+ var textRes = document.getElementById("txt-result");
+					textRes.innerHTML = 'Registering..  ';
 	var request = new XMLHttpRequest();
 
 	//capture response and store in variable 
-	req.onreadystatechange =function(){
-		if(req.readyState== XMLHttpRequest.DONE){
-		    var textRes = document.getElementById("txt-result");
-					textRes.innerHTML = 'Display Result : ';
+	request.onreadystatechange =function(){
+		if(request.readyState== XMLHttpRequest.DONE){
+		    
 			if(req.status===200){
-				
-					
-					textRes.innerHTML += req.responseText;
+			    alert('User created successfully');
+					textRes.innerHTML += request.responseText;
+					register.value='Registered'
 			} else {
-			    textRes.innerHTML += 'Error : '+req.status;
+			    alert('could not register the user');
+			    textRes.innerHTML += 'Error : '+request.status;
 			}
 		}
-
 	};
 	var username = document.getElementById("username").value;
 	var password = document.getElementById("password").value;
@@ -105,11 +104,11 @@ register.onclick = function(){
    console.log(username);
    console.log(password);
    console.log('creating');
-   req.
-	//make the request
-	req.open('POST','/create-user',true);
-	req.setRequestHeader('Content-Type','application/json');
-	req.send(JSON.stringify({username: username, password: password}));
+   	//make the request
+	request.open('POST','/create-user',true);
+	request.setRequestHeader('Content-Type','application/json');
+	request.send(JSON.stringify({username: username, password: password}));
+	register.value='Registering ...'
 };
 
 var submit = document.getElementById("submit-btn");
