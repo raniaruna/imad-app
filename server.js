@@ -65,7 +65,7 @@ app.get('/hash/:input',function(req,res){
       var username = req.body.username;
      var password = req.body.password;
      var user_name = req.body.name;          
-     var user_email = req.body.email;
+     var email = req.body.email;
      var salt = crypto.randomBytes(128).toString('hex');
      var dbString = hash(password,salt);
           console.log('in server creating user' +username+ ", "+password);
