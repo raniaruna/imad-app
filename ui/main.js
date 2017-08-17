@@ -70,8 +70,10 @@ create_submit.onclick = function(){
    console.log(username);
    console.log(password);
    console.log('creating');
+   req.
 	//make the request
-	req.open('POST','http://raniaruna2005.imad.hasura-app.io/create-name',true);
+	req.open('POST','/create-user',true);
+	req.setRequestHeader('Content-Type','application/json');
 	req.send(JSON.stringify({username: username, password: password}));
 };
 
