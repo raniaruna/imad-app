@@ -3,6 +3,7 @@ var morgan = require('morgan');
 var path = require('path');
 var crypto =require('crypto');
 var bodyParser = require('body-parser');
+var session = require('express-session');
 var Pool = require('pg').Pool;
 var config = {
     user:'raniaruna2005',
@@ -37,6 +38,10 @@ function createTemplate(data){
 </html>`;
 return htmlTemplate;
 }
+app.get('/', function (req, res) {
+  res.sendFile(path.join(__dirname, 'ui', 'index.html'));
+});
+
 var counter =0;
 app.get('/counter', function (req, res) {
 	counter++;
@@ -118,9 +123,7 @@ app.get('/submit-name', function (req, res) {
   res.send(JSON.stringify(names));
 });
 
-app.get('/', function (req, res) {
-  res.sendFile(path.join(__dirname, 'ui', 'index.html'));
-});
+
 
 app.get('/ui/style.css', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'style.css'));
