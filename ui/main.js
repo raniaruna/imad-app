@@ -100,7 +100,7 @@ function loadLogin(){
 	request.onreadystatechange =function(){
 		if(request.readyState== XMLHttpRequest.DONE){
 		    
-			if(req.status===200){
+			if(request.status===200){
 			   loadLogedInUser();
 			} else {
 			    alert('user not loged in');
