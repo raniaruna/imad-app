@@ -51,6 +51,7 @@ function loadLoginForm(){
                     <input type='submit' id='register_btn' value='Register'/><br/>`;
                     var login =document.getElementById("login_area");
                     login.innerHTML =loginHTML;
+                    console.log('here 222');
 var register = document.getElementById("register_btn");
 
 register.onclick = function(){
