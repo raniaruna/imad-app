@@ -47,6 +47,7 @@ var create_submit = document.getElementById("create-submit-btn");
 
 create_submit.onclick = function(){
 //create req obj
+console.log('create button clicked');
 	var req = new XMLHttpRequest();
 
 	//capture response and store in variable 
