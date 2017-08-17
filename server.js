@@ -64,11 +64,14 @@ app.get('/hash/:input',function(req,res){
       console.log('in server creating user 1111');
       var username = req.body.username;
      var password = req.body.password;
+     var user_name = req.body.name;          
+     var user_email = req.body.email;
      var salt = crypto.randomBytes(128).toString('hex');
      var dbString = hash(password,salt);
           console.log('in server creating user' +username+ ", "+password);
-    var email =username+'@user.com';
-    pool.query('INSERT INTO "user" ("username","name","email","password") VALUES($1,$1,$2,$3)',[username,email,dbString] ,function(err,result){
+    
+    
+    pool.query('INSERT INTO "user" ("username","name","email","password") VALUES($1,$2,$3,$4)',[username,user_name,email,dbString] ,function(err,result){
 	    if(err){
 	        console.log(err.toString());
 	        res.status(500).send(err.toString());
