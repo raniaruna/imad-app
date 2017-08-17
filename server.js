@@ -71,7 +71,7 @@ app.post('/login',function(req,res){
 	    if(err){
 	        res.status(500).send(err.toString());
 	    } else {
-            res.status(200).send('user name created successfuly '+username);	        
+            res.send('user name created successfuly '+username);	        
 	    }
 	});
 }); 
