@@ -125,6 +125,10 @@ app.get('/articles/:articleName', function (req, res) {
 	});
   
 });
+app.get('/checklogin', function (req, res) {
+   res.status(400).send('You are not logged in');
+  
+});
 
 
 var names = [];
