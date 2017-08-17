@@ -49,7 +49,8 @@ function loadLoginForm(){
     var loginHTML =` <input type='text' id='username'/><br/>
                     <input type='password' id='password'/><br/><input type='text' id='user_name'/><br/><input type='text' id='user_email'/><br/>
                     <input type='submit' id='register_btn' value='Register'/><br/>`;
-                    var login =document.getElementById("login_area");
+                    
+    var login =document.getElementById("login_area");
                     login.innerHTML =loginHTML;
                     console.log('here 222');
 var register = document.getElementById("register_btn");
@@ -103,7 +104,7 @@ function loadLogin(){
 			if(request.status===200){
 			   loadLogedInUser();
 			} else {
-			    alert('user not loged in');
+			   
 			    loadLoginForm();
 			}
 		}
