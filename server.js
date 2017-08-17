@@ -39,6 +39,7 @@ function createTemplate(data){
 return htmlTemplate;
 }
 app.get('/', function (req, res) {
+    console.log('here starting the page');
   res.sendFile(path.join(__dirname, 'ui', 'index.html'));
 });
 
