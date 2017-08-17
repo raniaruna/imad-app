@@ -44,38 +44,14 @@ button.onclick=function(){
 };
 
 
- var register = document.getElementById('register_btn');
-    register.onclick = function () {
-        // Create a request object
-        var request = new XMLHttpRequest();
-        
-        // Capture the response and store it in a variable
-        request.onreadystatechange = function () {
-          if (request.readyState === XMLHttpRequest.DONE) {
-              // Take some action
-              if (request.status === 200) {
-                  alert('User created successfully');
-                  register.value = 'Registered!';
-              } else {
-                  alert('Could not register the user');
-                  register.value = 'Register';
-              }
-          }
-        };
-        
-        // Make the request
-        var username = document.getElementById('username').value;
-        var password = document.getElementById('password').value;
-        console.log(username);
-        console.log(password);
-        request.open('POST', '/create-user', true);
-        request.setRequestHeader('Content-Type', 'application/json');
-        request.send(JSON.stringify({username: username, password: password}));  
-        register.value = 'Registering...';
-    
-    };
 
-var register = document.getElementById("register_btn1");
+function loadLoginForm(){
+    var loginHTML =`<input type='text' id='username'/><br/>
+                    <input type='password' id='password'/><br/><input type='text' id='user_name'/><br/><input type='email' id='user_email'/><br/>
+                    <input type='submit' id='register_btn' value='Register'/><br/>`;
+                    var login =document.getElementById("login_area");
+                    login.innerHTML =loginHTML;
+var register = document.getElementById("register_btn");
 
 register.onclick = function(){
 //create req obj
@@ -100,6 +76,8 @@ register.onclick = function(){
 	};
 	var username = document.getElementById("username").value;
 	var password = document.getElementById("password").value;
+	var user_name = document.getElementById("user_name").value;
+	var user_email = document.getElementById("user_email").value;
 	
    console.log(username);
    console.log(password);
@@ -107,10 +85,11 @@ register.onclick = function(){
    	//make the request
 	request.open('POST','/create-user',true);
 	request.setRequestHeader('Content-Type','application/json');
-	request.send(JSON.stringify({username: username, password: password}));
+	request.send(JSON.stringify({username: username, name:user_name, email:user_email, password: password}));
 	register.value='Registering ...'
 };
 
+}
 var submit = document.getElementById("submit-btn");
 submit.onclick = function(){
 //create req obj
