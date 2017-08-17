@@ -121,6 +121,8 @@ submit.onclick = function(){
 	req.send(null);
 };
 
+loadLoginForm();
+
 /*submit.onclick = function(){
 	var names=['name1','name2','name3'];
 	var list='';
@@ -131,3 +133,4 @@ submit.onclick = function(){
 	ul.innerHTML = list;
 };
 */
+
