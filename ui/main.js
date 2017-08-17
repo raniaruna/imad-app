@@ -90,6 +90,41 @@ register.onclick = function(){
 };
 
 }
+
+function loadLogin () {
+    // Check if the user is already logged in
+    var request = new XMLHttpRequest();
+    request.onreadystatechange = function () {
+        if (request.readyState === XMLHttpRequest.DONE) {
+            if (request.status === 200) {
+                loadLoggedInUser(this.responseText);
+            } else {
+                loadLoginForm();
+            }
+        }
+    };
+    
+    request.open('GET', '/check-login', true);
+    request.send(null);
+}
+function loadLogin(){
+    var request = new XMLHttpRequest();
+
+	//capture response and store in variable 
+	request.onreadystatechange =function(){
+		if(request.readyState== XMLHttpRequest.DONE){
+		    
+			if(req.status===200){
+			   loadLogedInUser();
+			} else {
+			    loadLoginForm();
+			}
+		}
+	};
+	request.open('GET', '/check-login', true);
+    request.send(null);
+	
+}
 var submit = document.getElementById("submit-btn");
 submit.onclick = function(){
 //create req obj
@@ -121,7 +156,7 @@ submit.onclick = function(){
 	req.send(null);
 };
 
-loadLoginForm();
+loadLogin();
 
 /*submit.onclick = function(){
 	var names=['name1','name2','name3'];
