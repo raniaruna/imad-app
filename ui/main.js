@@ -107,7 +107,7 @@ function loadLogin(){
 			}
 		}
 	};
-	request.open('GET', '/check-login', true);
+	request.open('GET', '/checklogin', true);
     request.send(null);
 	
 }
