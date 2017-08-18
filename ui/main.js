@@ -49,8 +49,9 @@ function loadLoginForm(){
     var loginHTML =` <h3>Login User </h3><input type='text' id='username'/><br/>
                     <input type='password' id='password'/><br/>
                     <input type='submit' id='login_btn' value='Register'/><br/><spam id='txt-result'></spam>`;
-   var registerHTML =` <h3>Register User </h3><input type='text' id='username'/><br/>
-                    <input type='password' id='password'/><br/><input type='text' id='user_name'/><br/><input type='text' id='user_email'/><br/>
+   var registerHTML =` <h3>Register User </h3>User Name :<input type='text' id='username'/><br/>
+                    Password :<input type='password' id='password'/><br/>Name:<input type='text' id='user_name'/><br/>
+                    Email: <input type='text' id='user_email'/><br/>
                     <input type='submit' id='register_btn' value='Register'/><br/><spam id='txt-result'></spam>`;
                     
     var login =document.getElementById("login_area");
