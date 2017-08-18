@@ -91,12 +91,24 @@ app.post('/login',function(req,res){
      var salt = crypto.randomBytes(128).toString('hex');
      var username = req.body.username;
      var password = req.body.password;
-     var dbString = hash(password,salt);
-    pool.query('INSERT INTO "USER" (USERNAME,PASSWORD) VALUES($1,$2)',[username,dbString] ,function(err,result){
+     
+    pool.query('SELECT  ID,USERNAME,PASSWORD FROM "USER" where "username"=$1 ',[username] ,function(err,result){
 	    if(err){
 	        res.status(500).send(err.toString());
 	    } else {
-            res.send('user name created successfuly '+username);	        
+	        if(result.rows.length===0){
+            res.status(403).send('username/password invalid');	        
+	        } else {
+	            var dbString = result.rows[0].password;
+	            var salt = dbString.split('$')[2];
+	            var hashedPassword =  hash(password,salt);
+	            if(hashedPassword === dbString){
+	                req.session.auth ={userId: result.rows[0].id};
+	                res.send('credentials correct!');
+	            } else {
+	                res.status(403).send('username/password invalid');	
+	            }
+	        }
 	    }
 	});
 }); 
