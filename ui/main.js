@@ -1,6 +1,13 @@
 console.log('Loaded!');
 
-
+function loadCommentForm(){
+    var commentHTML =` <h3>Add Cooment </h3><input type='text' id='comment' placeholder='Add comment'/><br/>
+                    
+                    <input type='submit' id='cooment_btn' value='Save'/>` ;
+    var commentForm = document.getElementById("cooment_form");
+    commentForm.innerHTML = commentHTML;
+    
+}
 function loadLoginForm(){
     var loginHTML =` <h3>Login User </h3><input type='text' id='username' value='newuser2'/><br/>
                     <input type='password' id='password' value='password'/><br/>
