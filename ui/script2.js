@@ -11,6 +11,7 @@ function loadCommentForm(){
 function loadComments(articleName){
    var comment = document.getElementById("comment");
     var request = new XMLHttpRequest();
+    request.onreadystatechange =function(){
 if(request.readyState== XMLHttpRequest.DONE){
     
 		   
@@ -25,6 +26,7 @@ if(request.readyState== XMLHttpRequest.DONE){
 			  
 			}
 		}
+    };
 	request.open('GET','/get-comments/'+articleName,true);
 	request.setRequestHeader('Content-Type','application/json');
 	request.send(null);
