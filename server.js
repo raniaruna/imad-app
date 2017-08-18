@@ -90,6 +90,7 @@ app.post('/login',function(req,res){
      console.log('login in server '+username+ ', '+password);
     pool.query('SELECT  ID,USERNAME,PASSWORD FROM "user" where username=$1 ',[username] ,function(err,result){
 	    if(err){
+	        console.log(err.toString());
 	        res.status(500).send(err.toString());
 	    } else {
 	        if(result.rows.length===0){
