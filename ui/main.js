@@ -53,6 +53,8 @@ register.onclick = function(){
 	request.send(JSON.stringify({username: username, name:user_name, email:user_email, password: password}));
 	register.value='Registering ...'
 }; // register end
+
+
 var loginBtn = document.getElementById("login_btn");
 
 loginBtn.onclick = function(){
@@ -67,15 +69,20 @@ loginBtn.onclick = function(){
 		if(request.readyState== XMLHttpRequest.DONE){
 		    
 			if(request.status===200){
-			    alert('User logIn successfully');
-					textRes.innerHTML = request.responseText;
-				//loadLogedInUser(request.responseText);	
-			} else {
-			    alert('Invalid User');
-			    textRes.innerHTML = 'Error : '+request.status;
+			    loginBtn.value ='Sucess!'
+			} else if(request.status===403){
+			    loginBtn.value ='Invalid credentials. Try again';
+			} else if(request.status===500){
+			    alert('Something went wrong on the server. Try again');
+			    loginBtn.value ='Login';
+			}else {   
+			    alert('Something went wrong on the server');
+			    loginBtn.value ='Login';
 			}
+			loadLogin();
 		}
 	};
+	
 	var username = document.getElementById("username").value;
 	var password = document.getElementById("password").value;
 	
