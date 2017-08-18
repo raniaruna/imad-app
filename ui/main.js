@@ -127,6 +127,7 @@ function loadLogin(){
 }
  
 function loadArticles(){
+    
     var request = new XMLHttpRequest();
 
 	//capture response and store in variable 
