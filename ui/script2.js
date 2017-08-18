@@ -9,19 +9,19 @@ function loadCommentForm(){
     
 }
 function loadComments(articleName){
-   console.log('get comments for '+articleName);
+   var comment = document.getElementById("comments");
     var request = new XMLHttpRequest();
 if(request.readyState== XMLHttpRequest.DONE){
-    var comments = document.getElementById("comments");
+    
 		   
 			if(request.status===200){
 			    
 			    var content = '<ul>';
 			    var commentData =JSON.parse(request.responseText);
-			    comments.innerHTML = commentData;//content;
+			    comment.innerHTML = commentData;//content;
 			    console.log(request.responseText);
 			} else {
-			   comments.innerHTML ='Could not load all Comments!';
+			   comment.innerHTML ='Could not load all Comments!';
 			  
 			}
 		}
