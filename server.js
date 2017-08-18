@@ -149,6 +149,40 @@ app.get('/get-comments/:articleName', function (req, res) {
 	    }
 	});
 });
+app.post('/submit-comment/:articleName', function (req, res) {
+    var articleName =req.params.articleName;
+    if(req.session && req.session.auth && req.session.auth.userId){
+        
+	pool.query("SELECT * FROM article WHERE title =$1",[articleName] ,function(err,result){
+	    if(err){
+	        res.status(500).send(err.toString());
+	    } else {
+	        if(result.rows.length===0){
+	            res.status(404).send("Article Not Found!");
+	        } else {
+	            
+	        var article_id =result.rows[0].id;
+	        var user_id = req.session.auth.userId;
+	        var comment =req.body.comment;
+	        //insert comment
+	        pool.query('INSERT INTO comment (comment,article_id,user_id) VALUES($1,$2,$3)',[comment,article_id,user_id] ,function(err,result){
+    	    if(err){
+	            res.status(500).send(err.toString());
+	        } else {
+                res.status(200).send('comment inserted');	        
+	        }
+	        });
+	        //insert comment
+             
+	        }
+	    }
+	});
+    } else {
+        res.status(400).send('Only login user can comment! ');
+    }
+  
+});
+
 app.get('/checklogin', function (req, res) {
     if(req.session && req.session.auth && req.session.auth.userId){
         console.log('user in session ');
