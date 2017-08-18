@@ -3,8 +3,8 @@ console.log('Articles ..Loaded!');
 function loadCommentForm(){
     var commentHTML =` <h3>Add Cooment </h3><input type='text' id='comment' placeholder='Add comment'/><br/>
                     
-                    <input type='submit' id='cooment_btn' value='Save'/>` ;
-    var commentForm = document.getElementById("cooment_form");
+                    <input type='submit' id='comment_btn' value='Save'/>` ;
+    var commentForm = document.getElementById("comment_form");
     commentForm.innerHTML = commentHTML;
     
 }
