@@ -9,10 +9,11 @@ function loadLoginForm(){
                     Password :<input type='password' id='password'/><br/>Name:<input type='text' id='user_name'/><br/>
                     Email: <input type='text' id='user_email'/><br/>
                     <input type='submit' id='register_btn' value='Register'/><br/><input type='submit' id='login_btn' value='Login'/><spam id='txt-result'></spam>`;
+    var loginUser =`Hi ,{username} `;
                     
     var login =document.getElementById("login_area");
                     login.innerHTML = loginHTML;//registerHTML;
-                    console.log('here 222');
+                    
                     
                     
 var register = document.getElementById("register_btn");
@@ -68,7 +69,7 @@ loginBtn.onclick = function(){
 			if(request.status===200){
 			    alert('User logIn successfully');
 					textRes.innerHTML = request.responseText;
-					
+				loadLogedInUser();	
 			} else {
 			    alert('Invalid User');
 			    textRes.innerHTML = 'Error : '+request.status;
