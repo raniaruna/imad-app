@@ -138,6 +138,17 @@ app.get('/get-articles', function (req, res) {
 	    }
 	});
 });
+app.get('/get-comments/:articleName', function (req, res) {
+    var articleName =req.params.articleName;
+	pool.query(`SELECT comment.*,user.username FROM comment,article,user where article.title =$1 and comment.user_id =user.id and comment.article_id = article.id 
+	               ORDER BY comment.timestamp DESC `,[articleName],function(err,result){
+	    if(err){
+	        res.status(500).send(err.toString());
+	    } else {
+	       res.status(200).send(JSON.stringify(result.rows));
+	    }
+	});
+});
 app.get('/checklogin', function (req, res) {
     if(req.session && req.session.auth && req.session.auth.userId){
         console.log('user in session ');
