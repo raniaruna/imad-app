@@ -113,7 +113,7 @@ app.post('/login',function(req,res){
 
 app.get('/articles/:articleName', function (req, res) {
     var articleName =req.params.articleName;
-	pool.query("SELECT * FROM ARTICLE WHERE TITLE =$1",[articleName] ,function(err,result){
+	pool.query("SELECT * FROM article WHERE title =$1",[articleName] ,function(err,result){
 	    if(err){
 	        res.status(500).send(err.toString());
 	    } else {
@@ -126,6 +126,16 @@ app.get('/articles/:articleName', function (req, res) {
 	    }
 	});
   
+});
+app.get('/get-articles', function (req, res) {
+    
+	pool.query("SELECT * FROM article ORDER BY date DESC ",function(err,result){
+	    if(err){
+	        res.status(500).send(err.toString());
+	    } else {
+	       res.status(200).send(result.rows);
+	    }
+	});
 });
 app.get('/checklogin', function (req, res) {
     if(req.session && req.session.auth && req.session.auth.userId){
