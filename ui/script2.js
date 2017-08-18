@@ -9,7 +9,7 @@ function loadCommentForm(){
     
 }
 function loadComments(articleName){
-   var comment = document.getElementById("comments");
+   var comment = document.getElementById("comment");
     var request = new XMLHttpRequest();
 if(request.readyState== XMLHttpRequest.DONE){
     
