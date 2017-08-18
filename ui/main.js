@@ -69,7 +69,7 @@ loginBtn.onclick = function(){
 			if(request.status===200){
 			    alert('User logIn successfully');
 					textRes.innerHTML = request.responseText;
-				loadLogedInUser();	
+				loadLogedInUser(request.responseText);	
 			} else {
 			    alert('Invalid User');
 			    textRes.innerHTML = 'Error : '+request.status;
