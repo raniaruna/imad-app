@@ -41,7 +41,8 @@ function createTemplate(data){
 		<div><h1>${heading} </h1></div>
 		<div>${date.toDateString()} </div>
 		<div><p>${content} <p></div>
-		<div>
+		<div id="comment_area">Load Comments</div>
+		</div>
     </body>
 </html>`;
 return htmlTemplate;
