@@ -84,7 +84,7 @@ app.get('/hash/:input',function(req,res){
 
 
 app.post('/login',function(req,res){
-     var salt = crypto.randomBytes(128).toString('hex');
+   //  var salt = crypto.randomBytes(128).toString('hex');
      var username = req.body.username;
      var password = req.body.password;
      
