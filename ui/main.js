@@ -54,7 +54,7 @@ function loadLoginForm(){
                     <input type='submit' id='register_btn' value='Register'/><br/><spam id='txt-result'></spam>`;
                     
     var login =document.getElementById("login_area");
-                    login.innerHTML = loginHTML;
+                    login.innerHTML = registerHTML;// loginHTML;
                     console.log('here 222');
                     
                     
