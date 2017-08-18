@@ -91,7 +91,11 @@ loginBtn.onclick = function(){
 
 }
 
-function  loadLogedInUser(){}
+function  loadLogedInUser(){
+     var login =document.getElementById("login_area");
+                    login.innerHTML = `<h3>Hi ,<i>{username}</i> </h3>
+                                        <a href='/logout'>Logout</a>`;
+}
 function loadLogin(){
     var request = new XMLHttpRequest();
 
