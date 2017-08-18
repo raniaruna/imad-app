@@ -44,7 +44,7 @@ function createTemplate(data){
 		<div>
 		<hr/>
 		<div id="comment_form"><a href='loadCommentForm()'>Add Comment</a></div>
-		<div id="comments"><a href='loadComments()'>Display Comments</a></div>
+		<div id="comments"><a href='loadComments(${title})'>Display Comments</a></div>
 		</div>
 		</div>
     </body>
