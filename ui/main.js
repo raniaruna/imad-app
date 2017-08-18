@@ -155,6 +155,36 @@ function loadArticles(){
     request.send(null);
 	
 }
+function loadComments(){
+    var request = new XMLHttpRequest();
+
+	//capture response and store in variable 
+	request.onreadystatechange =function(){
+		if(request.readyState== XMLHttpRequest.DONE){
+		    var articles =document.getElementById("articles_area");
+			if(request.status===200){
+			    
+			    var content = '<ul>';
+			    var articleData =JSON.parse(request.responseText);
+			    for(var i=0; i< articleData.length; i++){
+			        content +=`<li>
+			                <a href="/articles/${articleData[i].title}">${articleData[i].heading}</a>
+			                (${articleData[i].date.split('T')[0]})</li>`;
+			    }
+			    content +='</ul>';
+			    articles.innerHTML =content;
+			    
+			} else {
+			   articles.innerHTML ='Could not load all articles!';
+			  
+			}
+		}
+	};
+	request.open('GET', '/get-articles', true);
+    request.send(null);
+	
+}
 
 loadLogin();
 loadArticles();
+loadComments();
