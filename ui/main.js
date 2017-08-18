@@ -101,7 +101,7 @@ loginBtn.onclick = function(){
 
 function  loadLogedInUser(username){
      var login =document.getElementById("login_area");
-                    login.innerHTML = `<h3>Hi ,<i>{username}</i> </h3>
+                    login.innerHTML = `<h3>Hi ,<i>${username}</i> </h3>
                                         <a href='/logout'>Logout</a>`;
 }
 function loadLogin(){
@@ -112,6 +112,7 @@ function loadLogin(){
 		if(request.readyState== XMLHttpRequest.DONE){
 		    
 			if(request.status===200){
+			    console.log('response :'+request.responseText);
 			   loadLogedInUser(request.responseText);
 			} else {
 			   
