@@ -19,7 +19,13 @@ if(request.readyState== XMLHttpRequest.DONE){
 			    
 			    var content = '<ul>';
 			    var commentData =JSON.parse(request.responseText);
-			    comment.innerHTML = commentData;//content;
+			    for(var i=0; i< commentData.length; i++){
+			        content +=`<li>
+			                ${commentData[i].comment}
+			                 - (${commentData[i].timestamp.split('T')[0]})</li>`;
+			    }
+			    content +='</ul>';
+			    comment.innerHTML = content;
 			    console.log(request.responseText);
 			} else {
 			   comment.innerHTML ='Could not load all Comments!';
