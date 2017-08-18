@@ -8,6 +8,26 @@ function loadCommentForm(){
     commentForm.innerHTML = commentHTML;
     
 }
+function loadComments(articleName){
+    var comments = document.getElementById("cooments");
+    var request = new XMLHttpRequest();
+
+	//capture response and store in variable 
+	request.onreadystatechange =function(){
+		if(request.readyState== XMLHttpRequest.DONE){
+		    
+			if(request.status===200){
+			    comments.innerHTML= request.responseText;
+					register.value='Registered'
+			} else {
+			    comments.innerHTML= 'Error : '+request.status;
+			}
+		}
+	};
+	request.open('GET','/get-comments/'+articleName,true);
+	request.setRequestHeader('Content-Type','application/json');
+	request.send(null);
+}
 function loadLoginForm(){
     var loginHTML =` <h3>Login User </h3><input type='text' id='username' value='newuser2'/><br/>
                     <input type='password' id='password' value='password'/><br/>
