@@ -47,7 +47,7 @@ function createTemplate(data){
 		<div id="comments"><a  href='javascript:void(0)' onClick="loadComments('${title}')">Display Comments</a></div>
 		</div>
 		</div>
-		<script type="text/javascript" src="/ui/main.js">
+		<script type="text/javascript" src="/ui/article_script.js">
         </script>
     </body>
 </html>`;
