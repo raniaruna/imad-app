@@ -20,7 +20,7 @@ if(request.readyState== XMLHttpRequest.DONE){
 			    var content = '<ul>';
 			    var commentData =JSON.parse(request.responseText);
 			    for(var i=0; i< commentData.length; i++){
-			        content +=`<li> ${commentData[i].comment}</li>`;
+			        content +=`<li> ${commentData[i]}</li>`;
 			    }
 			    content +='</ul>';
 			    comment.innerHTML = content;
