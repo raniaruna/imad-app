@@ -9,7 +9,7 @@ function loadCommentForm(){
     
 }
 function loadComments(articleName){
-    alert("getting comments for article");
+   console.log('get comments for '+articleName);
     var request = new XMLHttpRequest();
 if(request.readyState== XMLHttpRequest.DONE){
     var comments = document.getElementById("comments");
@@ -19,7 +19,7 @@ if(request.readyState== XMLHttpRequest.DONE){
 			    var content = '<ul>';
 			    var commentData =JSON.parse(request.responseText);
 			    comments.innerHTML = commentData;//content;
-			    
+			    console.log(request.responseText);
 			} else {
 			   comments.innerHTML ='Could not load all Comments!';
 			  
