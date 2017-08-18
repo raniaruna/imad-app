@@ -128,6 +128,7 @@ app.get('/articles/:articleName', function (req, res) {
 });
 app.get('/checklogin', function (req, res) {
     if(req.session && req.session.auth && req.session.auth.userId){
+        console.log('user in session ');
         pool.query('SELECT  ID,USERNAME,PASSWORD FROM "USER" where "id"=$1 ',[req.session.auth.userId] ,function(err,result){
 	    if(err){
 	        res.status(500).send(err.toString());
