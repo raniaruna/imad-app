@@ -9,7 +9,7 @@ function loadCommentForm(){
     
 }
 function loadComments(articleName){
-    var comments = document.getElementById("cooments");
+    var comments = document.getElementById("comments");
     var request = new XMLHttpRequest();
 
 	//capture response and store in variable 
