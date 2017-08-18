@@ -147,6 +147,7 @@ app.get('/get-articles', function (req, res) {
 });
 app.get('/get-comments/:articleName', function (req, res) {
     var articleName =req.params.articleName;
+    console.log('getting comments for '+articleName);
 	pool.query(`SELECT comment.*,"user".username FROM article, comment,"user" WHERE article.title =$1 AND  comment.user_id ="user".id 
                 AND article.id =comment.article_id  ORDER BY comment.timestamp DESC `,[articleName],function(err,result){
 	    if(err){
