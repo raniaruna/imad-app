@@ -161,7 +161,7 @@ function loadComments(){
 	//capture response and store in variable 
 	request.onreadystatechange =function(){
 		if(request.readyState== XMLHttpRequest.DONE){
-		    var articles =document.getElementById("articles_area");
+		    var articles =document.getElementById("comments");
 			if(request.status===200){
 			    
 			    var content = '<ul>';
