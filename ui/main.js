@@ -9,7 +9,7 @@ function loadCommentForm(){
     
 }
 function loadComments(articleName){
-    
+    alert("getting comments");
     var request = new XMLHttpRequest();
 if(request.readyState== XMLHttpRequest.DONE){
     var comments = document.getElementById("comments");
