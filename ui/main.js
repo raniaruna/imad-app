@@ -104,6 +104,7 @@ function  loadLogedInUser(username){
                     login.innerHTML = `<h3>Hi ,<i>${username}</i> </h3>
                                         <a href='/logout'>Logout</a>`;
 }
+
 function loadLogin(){
     var request = new XMLHttpRequest();
 
@@ -124,4 +125,26 @@ function loadLogin(){
     request.send(null);
 	
 }
+function loadArticles(){
+    var request = new XMLHttpRequest();
+
+	//capture response and store in variable 
+	request.onreadystatechange =function(){
+		if(request.readyState== XMLHttpRequest.DONE){
+		    
+			if(request.status===200){
+			    var articles =document.getElementById("articles_area");
+			    articles = request.responseText;
+			} else {
+			   
+			  
+			}
+		}
+	};
+	request.open('GET', '/get-articles', true);
+    request.send(null);
+	
+}
+
 loadLogin();
+loadArticles();
