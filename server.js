@@ -81,11 +81,7 @@ app.get('/hash/:input',function(req,res){
 	    }
 	});
 });
-var counter =0;
-app.get('/counter', function (req, res) {
-	counter++;
-  res.send(counter.toString());
-});
+
 
 app.post('/login',function(req,res){
      var salt = crypto.randomBytes(128).toString('hex');
@@ -113,17 +109,7 @@ app.post('/login',function(req,res){
 	});
 }); 
 
-// get data from database 
-app.get('/tb_test', function (req, res) {
-	pool.query("SELECT * FROM TAG" ,function(err,result){
-	    if(err){
-	        res.status(500).send(err.toString());
-	    } else {
-            res.status(200).send(JSON.stringify(result.rows));	        
-	    }
-	});
-  
-});
+
 app.get('/articles/:articleName', function (req, res) {
     var articleName =req.params.articleName;
 	pool.query("SELECT * FROM ARTICLE WHERE TITLE =$1",[articleName] ,function(err,result){
@@ -155,13 +141,7 @@ app.get('/checklogin', function (req, res) {
 });
 
 
-var names = [];
-app.get('/submit-name', function (req, res) {
-	var name  =req.query.name;
-	names.push(name);
-//JSOON notation
-  res.send(JSON.stringify(names));
-});
+
 
 
 
@@ -169,9 +149,6 @@ app.get('/ui/style.css', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'style.css'));
 });
 
-app.get('/ui/madi.png', function (req, res) {
-  res.sendFile(path.join(__dirname, 'ui', 'madi.png'));
-});
 app.get('/ui/main.js', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'main.js'));
 });
