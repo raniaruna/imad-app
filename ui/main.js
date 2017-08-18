@@ -19,7 +19,7 @@ var register = document.getElementById("register_btn");
 
 register.onclick = function(){
 //create req obj
- alert('create clicked');
+ 
  var textRes = document.getElementById("txt-result");
 					textRes.innerHTML = 'Registering..  ';
 	var request = new XMLHttpRequest();
@@ -56,9 +56,9 @@ var loginBtn = document.getElementById("login_btn");
 
 loginBtn.onclick = function(){
 //create req obj
- alert('login clicked');
+ 
  var textRes = document.getElementById("txt-result");
-					textRes.innerHTML = 'Enter Credentials..  ';
+					
 	var request = new XMLHttpRequest();
 
 	//capture response and store in variable 
