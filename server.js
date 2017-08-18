@@ -43,7 +43,7 @@ function createTemplate(data){
 		<div><p>${content} <p></div>
 		<div>
 		<hr/>
-		<div id="comment_form"><a href='/submit-comment/${title}'>Add Comment</a></div>
+		<div id="comment_form"><a href='loadCommentForm()'>Add Comment</a></div>
 		<div id="comments"><a href='/get-comments/${title}'Display Comments</a></div>
 		</div>
 		</div>
