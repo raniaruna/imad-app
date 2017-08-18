@@ -21,7 +21,7 @@ if(request.readyState== XMLHttpRequest.DONE){
 			    for(var i=0; i< commentData.length; i++){
 			        content +=`<li>
 			                ${commentData[i].comment}
-			                 - (${articleData[i].timestamp.split('T')[0]})</li>`;
+			                 - (${commentData[i].timestamp.split('T')[0]})</li>`;
 			    }
 			    content +='</ul>';
 			    comments.innerHTML =content;
