@@ -9,21 +9,28 @@ function loadCommentForm(){
     
 }
 function loadComments(articleName){
-    var comments = document.getElementById("comments");
+    
     var request = new XMLHttpRequest();
-
-	//capture response and store in variable 
-	request.onreadystatechange =function(){
-		if(request.readyState== XMLHttpRequest.DONE){
-		    
+if(request.readyState== XMLHttpRequest.DONE){
+    var comments = document.getElementById("comments");
+		   
 			if(request.status===200){
-			    comments.innerHTML= request.responseText;
-					register.value='Registered'
+			    
+			    var content = '<ul>';
+			    var commentData =JSON.parse(request.responseText);
+			    for(var i=0; i< commentData.length; i++){
+			        content +=`<li>
+			                ${commentData[i].comment}
+			                 - (${articleData[i].timestamp.split('T')[0]})</li>`;
+			    }
+			    content +='</ul>';
+			    comments.innerHTML =content;
+			    
 			} else {
-			    comments.innerHTML= 'Error : '+request.status;
+			   comments.innerHTML ='Could not load all Comments!';
+			  
 			}
 		}
-	};
 	request.open('GET','/get-comments/'+articleName,true);
 	request.setRequestHeader('Content-Type','application/json');
 	request.send(null);
