@@ -21,7 +21,7 @@ registerReq.onclick = function(){
 };                    
 }
 var register = document.getElementById("register_btn");
-if(register!==null){
+
     alert('here is register');
 register.onclick = function(){
 //create req obj
@@ -58,7 +58,7 @@ register.onclick = function(){
 	request.send(JSON.stringify({username: username, name:user_name, email:user_email, password: password}));
 	register.value='Registering ...'
 }; // register end
-}
+
 
 var loginBtn = document.getElementById("login_btn");
 if(loginBtn!==null){
