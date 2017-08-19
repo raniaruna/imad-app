@@ -30,7 +30,7 @@ if(request.readyState== XMLHttpRequest.DONE){
     
 }
 function loadComments(articleName){
-   var comment = document.getElementById("comment");
+   var comments = document.getElementById("comments_area");
     var request = new XMLHttpRequest();
     request.onreadystatechange =function(){
 if(request.readyState== XMLHttpRequest.DONE){
@@ -44,10 +44,10 @@ if(request.readyState== XMLHttpRequest.DONE){
 			        content +=`<li> ${commentData[i].comment} -(${commentData[i].timestamp.split('T')[0]})</li>`;
 			    }
 			    content +='</ul>';
-			    comment.innerHTML = content;
+			    comments.innerHTML = content;
 			    console.log(request.responseText);
 			} else {
-			   comment.innerHTML ='Could not load all Comments!';
+			   comments.innerHTML ='Could not load all Comments!';
 			  
 			}
 		}
