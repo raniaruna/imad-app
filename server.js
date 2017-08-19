@@ -119,7 +119,7 @@ app.post('/login',function(req,res){
 	    }
 	});
 }); 
-app.post('/logout',function(req,res){
+app.get('/logout',function(req,res){
     delete req.session.auth;
 	res.send('<html><body>Logged out ! <a href="/">Go Home</a></body></html>');
 }); 
