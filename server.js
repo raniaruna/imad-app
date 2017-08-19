@@ -119,6 +119,10 @@ app.post('/login',function(req,res){
 	    }
 	});
 }); 
+app.post('/logout',function(req,res){
+    delete req.session.auth;
+	res.send('<html><body>Logged out ! <a href="/">Go Home</a></body></html>');
+}); 
 
 
 app.get('/articles/:articleName', function (req, res) {
