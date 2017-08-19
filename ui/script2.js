@@ -18,7 +18,7 @@ if(request.readyState== XMLHttpRequest.DONE){
 			if(request.status===200){
 			    loadComments(articleName);
 			    commentForm.innerHTML = request.responseText;
-			    console.log(request.responseText);
+			    
 			} 
 		}
     };
@@ -46,7 +46,7 @@ if(request.readyState== XMLHttpRequest.DONE){
 			    }
 			    content +='</ul>';
 			    comments.innerHTML = content;
-			    console.log(request.responseText);
+			    
 			} else {
 			   comments.innerHTML ='Could not load all Comments!';
 			  

@@ -42,9 +42,7 @@ register.onclick = function(){
 	var user_name = document.getElementById("user_name").value;
 	var user_email = document.getElementById("user_email").value;
 	
-   console.log(username);
-   console.log(password);
-   console.log('creating');
+   console.log(username +'..creating');
    	//make the request
 	request.open('POST','/create-user',true);
 	request.setRequestHeader('Content-Type','application/json');
@@ -101,9 +99,6 @@ loginBtn.onclick = function(){
 	var username = document.getElementById("username").value;
 	var password = document.getElementById("password").value;
 	
-   console.log(username);
-   console.log(password);
-   console.log('login ');
    	//make the request
 	request.open('POST','/login',true);
 	request.setRequestHeader('Content-Type','application/json');
@@ -128,7 +123,7 @@ function loadLogin(){
 		if(request.readyState== XMLHttpRequest.DONE){
 		    
 			if(request.status===200){
-			    console.log('response :'+request.responseText);
+			    
 			   loadLogedInUser(request.responseText);
 			} else {
 			   

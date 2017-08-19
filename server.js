@@ -21,11 +21,11 @@ app.use(session({
     cookie: { maxAge:1000 *60 * 60 * 24 * 30},
     resave: true,
     saveUninitialized: true
-    
+
 }));
 
 function createTemplate(data){
-	
+
 	var title = data.title;
 	var date =data.date;
 	var content =data.content;
@@ -49,15 +49,14 @@ function createTemplate(data){
 		</div>
 		</div>
 		<script type="text/javascript" src="/ui/script2.js">
-		
+
         </script>
     </body>
 </html>`;
 return htmlTemplate;
 }
 app.get('/', function (req, res) {
-    console.log('here starting the page');
-  res.sendFile(path.join(__dirname, 'ui', 'index.html'));
+      res.sendFile(path.join(__dirname, 'ui', 'index.html'));
 });
 function hash(input,salt){
     var hashed = crypto.pbkdf2Sync(input,salt,10000,512,'sha512');
@@ -68,47 +67,47 @@ app.get('/hash/:input',function(req,res){
     var hashedStr = hash(req.params.input,'this-is-some-random-string');
     res.send(hashedStr);
 });
- 
+
 
  app.post('/create-user',function(req,res){
-      console.log('in server creating user 1111');
+      
       var username = req.body.username;
      var password = req.body.password;
-     var user_name = req.body.name;          
+     var user_name = req.body.name;
      var email = req.body.email;
      var salt = crypto.randomBytes(128).toString('hex');
      var dbString = hash(password,salt);
-          console.log('in server creating user' +username+ ", "+password);
-    
+          console.log('in server creating user' +username);
+
     var isCreate =false;
     pool.query('INSERT INTO "user" ("username","name","email","password") VALUES($1,$2,$3,$4)',[username,user_name,email,dbString] ,function(err,result){
 	    if(err){
 	        console.log(err.toString());
 	        res.status(500).send(err.toString());
-	        
+
 	    } else {
-           
+
 	pool.query('SELECT  ID,USERNAME FROM "user" where username=$1 ',[username] ,function(err,result){
 	    if(err){
 	        console.log('Error create_user:'+err.toString());
 	        res.status(500).send(err.toString());
 	    } else {
 	        if(result.rows.length===0){
-            res.status(403).send('username/password invalid');	        
+            res.status(403).send('username/password invalid');
 	        } else {
 	                req.session.auth ={userId: result.rows[0].id};
 	                res.status(200).send('User created ');
-	            
+
 	        }
 	    }
-	}); 
+	});
 	    }
 	});
-	
-	   
-	
-	
-	
+
+
+
+
+
 });
 
 
@@ -116,14 +115,14 @@ app.post('/login',function(req,res){
    //  var salt = crypto.randomBytes(128).toString('hex');
      var username = req.body.username;
      var password = req.body.password;
-     console.log('login in server '+username+ ', '+password);
+     console.log('login in server '+username);
     pool.query('SELECT  ID,USERNAME,PASSWORD FROM "user" where username=$1 ',[username] ,function(err,result){
 	    if(err){
 	        console.log(err.toString());
 	        res.status(500).send(err.toString());
 	    } else {
 	        if(result.rows.length===0){
-            res.status(403).send('username/password invalid');	        
+            res.status(403).send('username/password invalid');
 	        } else {
 	            var dbString = result.rows[0].password;
 	            var salt = dbString.split('$')[2];
@@ -132,16 +131,16 @@ app.post('/login',function(req,res){
 	                req.session.auth ={userId: result.rows[0].id};
 	                res.send('credentials correct!');
 	            } else {
-	                res.status(403).send('username/password invalid');	
+	                res.status(403).send('username/password invalid');
 	            }
 	        }
 	    }
 	});
-}); 
+});
 app.get('/logout',function(req,res){
     delete req.session.auth;
 	res.send('<html><body>Logged out ! <a href="/">Go Home</a></body></html>');
-}); 
+});
 
 
 app.get('/articles/:articleName', function (req, res) {
@@ -158,10 +157,10 @@ app.get('/articles/:articleName', function (req, res) {
 	    }
 	    }
 	});
-  
+
 });
 app.get('/get-articles', function (req, res) {
-    
+
 	pool.query("SELECT * FROM article ORDER BY date DESC ",function(err,result){
 	    if(err){
 	        res.status(500).send(err.toString());
@@ -172,23 +171,23 @@ app.get('/get-articles', function (req, res) {
 });
 app.get('/get-comments/:articleName', function (req, res) {
     var articleName =req.params.articleName;
-    console.log('getting comments for in server '+articleName);
-	pool.query(`SELECT comment.*,"user".username FROM article, comment,"user" WHERE article.title =$1 AND  comment.user_id ="user".id 
+    
+	pool.query(`SELECT comment.*,"user".username FROM article, comment,"user" WHERE article.title =$1 AND  comment.user_id ="user".id
                 AND article.id =comment.article_id  ORDER BY comment.timestamp DESC `,[articleName],function(err,result){
 	    if(err){
 	        console.log('Error:'+err.toString());
 	        res.status(500).send(err.toString());
 	    } else {
-	        console.log("no of comments"+result.rows.length);
+	        
 	       res.status(200).send(JSON.stringify(result.rows));
 	    }
 	});
 });
 app.post('/submit-comment/:articleName', function (req, res) {
-    console.log('adding comment');
+    
     var articleName =req.params.articleName;
     if(req.session && req.session.auth && req.session.auth.userId){
-        
+
 	pool.query("SELECT * FROM article WHERE title =$1",[articleName] ,function(err,result){
 	    if(err){
 	        res.status(500).send(err.toString());
@@ -196,7 +195,7 @@ app.post('/submit-comment/:articleName', function (req, res) {
 	        if(result.rows.length===0){
 	            res.status(404).send("Article Not Found!");
 	        } else {
-	            
+
 	        var article_id =result.rows[0].id;
 	        var user_id = req.session.auth.userId;
 	        var comment =req.body.comment;
@@ -205,23 +204,23 @@ app.post('/submit-comment/:articleName', function (req, res) {
     	    if(err){
 	            res.status(500).send(err.toString());
 	        } else {
-                res.status(200).send('comment inserted');	        
+                res.status(200).send('comment inserted');
 	        }
 	        });
 	        //insert comment
-             
+
 	        }
 	    }
 	});
     } else {
         res.status(400).send('Only login user can comment! ');
     }
-  
+
 });
 
 app.get('/checklogin', function (req, res) {
     if(req.session && req.session.auth && req.session.auth.userId){
-        console.log('user in session ');
+        
         pool.query('SELECT  * FROM "user" where "id"=$1 ',[req.session.auth.userId] ,function(err,result){
 	    if(err){
 	        res.status(500).send(err.toString());
