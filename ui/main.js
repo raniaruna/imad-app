@@ -15,13 +15,13 @@ function loadLoginForm(){
                     login.innerHTML = loginHTML;//registerHTML;
                     
 var registerReq = document.getElementById("register_req");    
-if(registerReq!=null){
+if(registerReq!==null){
 registerReq.onclick = function(){
      login.innerHTML = registerHTML;
 };                    
 }
 var register = document.getElementById("register_btn");
-if(register!=nul){
+if(register!==nul){
 register.onclick = function(){
 //create req obj
  
