@@ -9,8 +9,7 @@ function loadCommentForm(articleName){
     
     var submit = document.getElementById("comment_btn");
     submit.onclick =function(){
-        alert('adding comment');
-         var request = new XMLHttpRequest();
+       var request = new XMLHttpRequest();
     request.onreadystatechange =function(){
 if(request.readyState== XMLHttpRequest.DONE){
     
