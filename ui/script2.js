@@ -1,7 +1,7 @@
 console.log('Articles ..Loaded!');
 
 function loadCommentForm(articleName){
-    var commentHTML =` <h3>Add Cooment </h3><input type='textarea' rows="4" cols="50" id='comment' placeholder='Add comment'/><br/>
+    var commentHTML =` <h3>Add Cooment </h3><textarea rows="4" cols="50" id='comment' placeholder='Add comment'/><br/>
                     
                     <input type='submit' id='comment_btn' value='Save'/>` ;
     var commentForm = document.getElementById("comment_form");
