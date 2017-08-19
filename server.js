@@ -160,6 +160,7 @@ app.get('/get-comments/:articleName', function (req, res) {
 	});
 });
 app.post('/submit-comment/:articleName', function (req, res) {
+    console.log('adding comment');
     var articleName =req.params.articleName;
     if(req.session && req.session.auth && req.session.auth.userId){
         
