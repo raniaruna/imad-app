@@ -30,6 +30,7 @@ register.onclick = function(){
 			    alert('User created successfully');
 					textRes.innerHTML += request.responseText;
 					register.value='Registered'
+					loadLogin();
 			} else {
 			    alert('could not register the user');
 			    textRes.innerHTML += 'Error : '+request.status;
