@@ -100,7 +100,7 @@ app.get('/hash/:input',function(req,res){
             res.status(403).send('username/password invalid');	        
 	        } else {
 	                req.session.auth ={userId: result.rows[0].id};
-	                res.send('User created ');
+	                res.status(200).send('User created ');
 	            
 	        }
 	    }
