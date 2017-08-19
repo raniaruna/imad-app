@@ -8,6 +8,7 @@ function loadCommentForm(articleName){
     commentForm.innerHTML = commentHTML;
     
     var submit = document.getElementById("comment_btn");
+    if(submit!==null){
     submit.onclick =function(){
        var request = new XMLHttpRequest();
     request.onreadystatechange =function(){
@@ -26,6 +27,7 @@ if(request.readyState== XMLHttpRequest.DONE){
 	request.setRequestHeader('Content-Type','application/json');
 	request.send(JSON.stringify({comment:comment}));
     };
+    }
     
 }
 function loadComments(articleName){
