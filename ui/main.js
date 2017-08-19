@@ -14,12 +14,14 @@ function loadLoginForm(){
     var login =document.getElementById("login_area");
                     login.innerHTML = loginHTML;//registerHTML;
                     
-var registerReq = document.getElementById("register_req");                    
+var registerReq = document.getElementById("register_req");    
+if(registerReq!=null){
 registerReq.onclick = function(){
      login.innerHTML = registerHTML;
 };                    
+}
 var register = document.getElementById("register_btn");
-
+if(register!=nul){
 register.onclick = function(){
 //create req obj
  
@@ -55,10 +57,10 @@ register.onclick = function(){
 	request.send(JSON.stringify({username: username, name:user_name, email:user_email, password: password}));
 	register.value='Registering ...'
 }; // register end
-
+}
 
 var loginBtn = document.getElementById("login_btn");
-
+if(loginBtn!=null){
 loginBtn.onclick = function(){
 //create req obj
  
@@ -97,7 +99,7 @@ loginBtn.onclick = function(){
 	request.send(JSON.stringify({username: username, password: password}));
 	
 };//login
-
+}
 
 }
 
