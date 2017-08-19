@@ -87,10 +87,7 @@ app.get('/hash/:input',function(req,res){
 	        res.status(500).send(err.toString());
 	        
 	    } else {
-            isCreate =true;
-	    }
-	});
-	if(isCreate){
+           
 	pool.query('SELECT  ID,USERNAME FROM "user" where username=$1 ',[username] ,function(err,result){
 	    if(err){
 	        console.log(err.toString());
@@ -104,8 +101,12 @@ app.get('/hash/:input',function(req,res){
 	            
 	        }
 	    }
-	});    
-	}
+	}); 
+	    }
+	});
+	
+	   
+	
 	
 	
 });
