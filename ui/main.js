@@ -1,31 +1,20 @@
 console.log('Loaded!');
 
 function loadRegister(){
-   var registerHTML =` <h3>Register User </h3>User Name :<input type='text' id='username'/><br/>
+                    
+                   
+ var registerHTML =` <h3>Register User </h3>User Name :<input type='text' id='username'/><br/>
                     Password :<input type='password' id='password'/><br/>Name:<input type='text' id='user_name'/><br/>
                     Email: <input type='text' id='user_email'/><br/>
                     <input type='submit' id='register_btn' value='Register'/> <input type='submit' id='login_btn' value='Login'/><spam id='txt-result'></spam>`;
-    var registerReq = document.getElementById("register_req");    
-
-registerReq.onclick = function(){
-     login.innerHTML = registerHTML;
-};                    
+        var login =document.getElementById("login_area");
+        
+login.innerHTML =registerHTML;
 
 
-}
-
-function loadLoginForm(){
-    var loginHTML =` <h3>Login User </h3><input type='text' id='username' value='newuser2'/><br/>
-                    <input type='password' id='password' value='password'/><br/>
-                    <input type='submit' id='login_btn' value='Login'/> <input type='submit' id='register_req' value='Register'/><br/><spam id='txt-result'></spam>`;
-    var loginUser =`Hi ,{username} `;
-                    
-    var login =document.getElementById("login_area");
-                    login.innerHTML = loginHTML;//registerHTML;
-                    
 var register = document.getElementById("register_btn");
 
-    alert('here is register');
+  
 register.onclick = function(){
 //create req obj
  
@@ -62,6 +51,23 @@ register.onclick = function(){
 	register.value='Registering ...'
 }; // register end
 
+
+}
+
+function loadLoginForm(){
+    var loginHTML =` <h3>Login User </h3><input type='text' id='username' value='newuser2'/><br/>
+                    <input type='password' id='password' value='password'/><br/>
+                    <input type='submit' id='login_btn' value='Login'/> <input type='submit' id='register_req' value='Register'/><br/><spam id='txt-result'></spam>`;
+    var loginUser =`Hi ,{username} `;
+                    
+    var login =document.getElementById("login_area");
+                    login.innerHTML = loginHTML;//registerHTML;
+ 
+    var registerReq = document.getElementById("register_req");    
+    
+registerReq.onclick = function(){
+    loadRegister();
+};      
 
 var loginBtn = document.getElementById("login_btn");
 if(loginBtn!==null){
