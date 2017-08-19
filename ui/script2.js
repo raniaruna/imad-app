@@ -8,7 +8,8 @@ function loadCommentForm(articleName){
     commentForm.innerHTML = commentHTML;
     
     var submit = document.getElementById("comment_btn");
-    submit.onClick =function(){
+    submit.onclick =function(){
+        alert('adding comment');
          var request = new XMLHttpRequest();
     request.onreadystatechange =function(){
 if(request.readyState== XMLHttpRequest.DONE){
@@ -30,7 +31,7 @@ if(request.readyState== XMLHttpRequest.DONE){
 			}
 		}
     };
-    var comment =document.getElementById("comment");
+    var comment =document.getElementById("comment").value;
 	request.open('POST','/submit-comment/'+articleName,true);
 	request.setRequestHeader('Content-Type','application/json');
 	request.send(JSON.stringify({comment:comment}));
