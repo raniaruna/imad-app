@@ -80,16 +80,34 @@ app.get('/hash/:input',function(req,res){
      var dbString = hash(password,salt);
           console.log('in server creating user' +username+ ", "+password);
     
-    
+    var isCreate =false;
     pool.query('INSERT INTO "user" ("username","name","email","password") VALUES($1,$2,$3,$4)',[username,user_name,email,dbString] ,function(err,result){
 	    if(err){
 	        console.log(err.toString());
 	        res.status(500).send(err.toString());
 	        
 	    } else {
-            res.send('user name created successfuly '+username);	        
+            isCreated =true;
 	    }
 	});
+	if(isCreated){
+	pool.query('SELECT  ID,USERNAME FROM "user" where username=$1 ',[username] ,function(err,result){
+	    if(err){
+	        console.log(err.toString());
+	        res.status(500).send(err.toString());
+	    } else {
+	        if(result.rows.length===0){
+            res.status(403).send('username/password invalid');	        
+	        } else {
+	                req.session.auth ={userId: result.rows[0].id};
+	                res.send('User created ');
+	            
+	        }
+	    }
+	});    
+	}
+	
+	
 });
 
 
