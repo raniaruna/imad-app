@@ -21,7 +21,7 @@ registerReq.onclick = function(){
 };                    
 }
 var register = document.getElementById("register_btn");
-if(register!==nul){
+if(register!==null){
 register.onclick = function(){
 //create req obj
  
@@ -60,7 +60,7 @@ register.onclick = function(){
 }
 
 var loginBtn = document.getElementById("login_btn");
-if(loginBtn!=null){
+if(loginBtn!==null){
 loginBtn.onclick = function(){
 //create req obj
  
