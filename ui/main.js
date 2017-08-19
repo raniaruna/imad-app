@@ -70,7 +70,7 @@ registerReq.onclick = function(){
 };      
 
 var loginBtn = document.getElementById("login_btn");
-if(loginBtn!==null){
+
 loginBtn.onclick = function(){
 //create req obj
  
@@ -109,7 +109,7 @@ loginBtn.onclick = function(){
 	request.send(JSON.stringify({username: username, password: password}));
 	
 };//login
-}
+
 
 }
 
