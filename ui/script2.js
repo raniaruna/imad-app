@@ -16,19 +16,10 @@ if(request.readyState== XMLHttpRequest.DONE){
     
 		   
 			if(request.status===200){
-			    
-			    var content = '<ul>';
-			    var commentData =JSON.parse(request.responseText);
-			    for(var i=0; i< commentData.length; i++){
-			        content +=`<li> ${commentData[i].comment} -(${commentData[i].timestamp.split('T')[0]})</li>`;
-			    }
-			    content +='</ul>';
-			    comment.innerHTML = content;
+			    loadComments(articleName);
+			    commentForm.innerHTML = request.responseText;
 			    console.log(request.responseText);
-			} else {
-			   comment.innerHTML ='Could not load all Comments!';
-			  
-			}
+			} 
 		}
     };
     var comment =document.getElementById("comment").value;
