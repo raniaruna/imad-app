@@ -8,7 +8,7 @@ function loadLoginForm(){
    var registerHTML =` <h3>Register User </h3>User Name :<input type='text' id='username'/><br/>
                     Password :<input type='password' id='password'/><br/>Name:<input type='text' id='user_name'/><br/>
                     Email: <input type='text' id='user_email'/><br/>
-                    <input type='submit' id='register_btn' value='Register'/><br/><input type='submit' id='login_btn' value='Login'/><spam id='txt-result'></spam>`;
+                    <input type='submit' id='register_btn' value='Register'/> <input type='submit' id='login_btn' value='Login'/><spam id='txt-result'></spam>`;
     var loginUser =`Hi ,{username} `;
                     
     var login =document.getElementById("login_area");
@@ -22,6 +22,7 @@ registerReq.onclick = function(){
 }
 var register = document.getElementById("register_btn");
 if(register!==null){
+    alert('here is register');
 register.onclick = function(){
 //create req obj
  
