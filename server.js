@@ -44,10 +44,11 @@ function createTemplate(data){
 		<div>
 		<hr/>
 		<div id="comment_form"><a href='javascript:void(0)' onClick="loadCommentForm('${title}')">Add Comment</a></div>
-		<div id="comment"><a  href='javascript:void(0)' onClick="loadComments('${title}')">Display Comments</a></div>
+		<div id="comments_area"></div>
 		</div>
 		</div>
 		<script type="text/javascript" src="/ui/script2.js">
+		loadComments('${title}');
         </script>
     </body>
 </html>`;
