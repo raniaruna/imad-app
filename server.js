@@ -87,20 +87,20 @@ app.get('/hash/:input',function(req,res){
     pool.query('INSERT INTO "user" ("username","name","email","password") VALUES($1,$2,$3,$4)',[username,user_name,email,dbString] ,function(err,result){
 	    if(err){
 	        console.log(err.toString());
-	        res.status(500).send(err.toString());
+	        res.status(500).send(JSON.stringify({'error':err.toString()}));
 
 	    } else {
 
 	pool.query('SELECT  ID,USERNAME FROM "user" where username=$1 ',[username] ,function(err,result){
 	    if(err){
 	        console.log('Error create_user:'+err.toString());
-	        res.status(500).send(err.toString());
+	        res.status(500).send(JSON.stringify({'error':err.toString()}));
 	    } else {
 	        if(result.rows.length===0){
-            res.status(403).send('username/password invalid');
+            res.status(403).send(JSON.stringify({'error':'username/password invalid'}));
 	        } else {
 	                req.session.auth ={userId: result.rows[0].id};
-	                res.status(200).send('User created ');
+	                res.status(200).send(JSON.stringify({'message':'User created '}));
 
 	        }
 	    }
@@ -123,7 +123,7 @@ app.post('/login',function(req,res){
     pool.query('SELECT  ID,USERNAME,PASSWORD FROM "user" where username=$1 ',[username] ,function(err,result){
 	    if(err){
 	        console.log(err.toString());
-	        res.status(500).send(err.toString());
+	        res.status(500).send(JSON.stringify({'error':err.toString()}));
 	    } else {
 	        if(result.rows.length===0){
             res.status(403).send('username/password invalid');
@@ -133,9 +133,9 @@ app.post('/login',function(req,res){
 	            var hashedPassword =  hash(password,salt);
 	            if(hashedPassword === dbString){
 	                req.session.auth ={userId: result.rows[0].id};
-	                res.send('credentials correct!');
+	                res.status(200).send(JSON.stringify({'message':'credentials correct!'}));
 	            } else {
-	                res.status(403).send('username/password invalid');
+	                res.status(403).send(JSON.stringify({'error':'username/password invalid'}));
 	            }
 	        }
 	    }
